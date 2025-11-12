@@ -1,0 +1,47 @@
+{%- unless template == 'index' or template == 'cart' or template == '404' -%}
+  {%- assign t = template | split: '.' | first -%}
+  <nav class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
+    <ol class="breadcrumbs__list">
+      <li class="breadcrumbs__item">
+        <a class="breadcrumbs__link" href="/">Home</a>
+        <span class="breadcrumbs-icon-arrow">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+      </li>
+      {%- case t -%}
+        {%- when 'page' -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ page.url }}">{{ page.title }}</a>
+          </li>
+        {%- when 'product' -%}
+          {%- if collection -%}
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+              <span class="breadcrumbs-icon-arrow">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+            </li>
+          {%- endif -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ product.url }}">{{ product.title }}</a>
+          </li>
+        {%- when 'collection' -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+          </li>
+        {%- when 'blog' -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ blog.url }}">{{ blog.title }}</a>
+          </li>
+        {%- when 'article' -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ blog.url }}">{{ blog.title }}</a>
+            <span class="breadcrumbs-icon-arrow">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+          </li>
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ article.url }}">{{ article.title }}</a>
+          </li>
+        {%- else -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ request.path }}">{{ page_title }}</a>
+          </li>
+      {%- endcase -%}
+    </ol>
+  </nav>
+{%- endunless -%}

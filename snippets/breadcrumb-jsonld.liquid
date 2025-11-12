@@ -1,0 +1,79 @@
+{%- capture breadcrumb_items -%}
+[
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "{{ shop.url }}"
+  }
+  {%- assign position = 2 -%}
+  {%- assign t = template | split: '.' | first -%}
+  {%- case t -%}
+    {%- when 'page' -%}
+      ,{
+        "@type": "ListItem",
+        "position": {{ position }},
+        "name": "{{ page.title | escape }}",
+        "item": "{{ shop.url }}{{ page.url }}"
+      }
+    {%- when 'product' -%}
+      {%- if collection -%}
+        ,{
+          "@type": "ListItem",
+          "position": {{ position }},
+          "name": "{{ collection.title | escape }}",
+          "item": "{{ shop.url }}{{ collection.url }}"
+        }
+        {%- assign position = position | plus: 1 -%}
+      {%- endif -%}
+      ,{
+        "@type": "ListItem",
+        "position": {{ position }},
+        "name": "{{ product.title | escape }}",
+        "item": "{{ shop.url }}{{ product.url }}"
+      }
+    {%- when 'collection' -%}
+      ,{
+        "@type": "ListItem",
+        "position": {{ position }},
+        "name": "{{ collection.title | escape }}",
+        "item": "{{ shop.url }}{{ collection.url }}"
+      }
+    {%- when 'blog' -%}
+      ,{
+        "@type": "ListItem",
+        "position": {{ position }},
+        "name": "{{ blog.title | escape }}",
+        "item": "{{ shop.url }}{{ blog.url }}"
+      }
+    {%- when 'article' -%}
+      ,{
+        "@type": "ListItem",
+        "position": {{ position }},
+        "name": "{{ blog.title | escape }}",
+        "item": "{{ shop.url }}{{ blog.url }}"
+      }
+      ,{
+        "@type": "ListItem",
+        "position": {{ position | plus: 1 }},
+        "name": "{{ article.title | escape }}",
+        "item": "{{ shop.url }}{{ article.url }}"
+      }
+    {%- else -%}
+      ,{
+        "@type": "ListItem",
+        "position": {{ position }},
+        "name": "{{ page_title | escape }}",
+        "item": "{{ shop.url }}{{ request.path }}"
+      }
+  {%- endcase -%}
+]
+{%- endcapture -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": {{ breadcrumb_items | strip_newlines }}
+}
+</script>

@@ -1,0 +1,36 @@
+{% if article %}
+  <!-- TEMPLATE DEBUG: {{ template }} -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ article.title | json }},
+  "description": {{ article.excerpt_or_content | strip_html | truncate: 160 | json }},
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ article.image | img_url: '1024x1024' | prepend: 'https:' | json }}
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "The Painted Kitchen Company Ltd",
+    "url": "https://paintedkitchen.co.uk"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Painted Kitchen Company Ltd",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://paintedkitchen.co.uk/cdn/shop/files/logo.png"
+    }
+  },
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S' }}+00:00",
+  {% if article.tags.size > 0 %}
+  "keywords": {{ article.tags | join: ", " | json }},
+  {% endif %}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ article.url }}"
+  }
+}
+</script>
+{% endif %}

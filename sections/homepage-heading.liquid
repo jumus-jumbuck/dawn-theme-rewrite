@@ -1,0 +1,33 @@
+{% comment %}
+  Section: Homepage Heading 
+  This section adds an editable H1 heading to the homepage.
+  It defines a text setting for the H1 content, editable via the theme customizer.
+{% endcomment %}
+
+<!-- Output the H1 heading. It's escaped for safety and given a class for styling if needed -->
+<h1 class="homepage-heading">{{ section.settings.heading_text | escape }}</h1>
+
+{% schema %}
+{
+  "name": "Homepage Heading",
+  "class": "homepage-heading-section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading text",
+      "default": "Welcome to our store"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Heading",
+      "category": "Text",
+      "settings": {
+        "heading_text": "Welcome to our store"
+      }
+    }
+  ]
+}
+{% endschema %}

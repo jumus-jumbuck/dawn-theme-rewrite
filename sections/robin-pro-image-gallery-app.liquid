@@ -1,0 +1,125 @@
+{% for block in section.blocks %}
+  <div {{ block.shopify_attributes }}>
+    <div class="robin-pro {% if block.settings.width == 'page' %}page-width{% endif %}" id="{{ block.settings.gallery_id }}"></div>
+  </div>
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Robin PRO Image Gallery",
+    "blocks": [
+      {
+        "type": "gallery",
+        "name": "Gallery",
+        "settings": [
+          {
+            "label": "Gallery",
+            "type": "select",
+            "id": "gallery_id",
+            "options": [
+{
+  "value": "36675fc0-c054-43cf-a4a6-425a7f93fb62",
+  "label": "Dark Grey"
+},
+{
+  "value": "9adabcd2-0a90-4b37-b42f-a9de20ad7d8a",
+  "label": "Ealing Gallery"
+},
+{
+  "value": "ccc6d2b8-f221-4fee-9084-0afdd67fdca9",
+  "label": "Poole Gallery"
+},
+{
+  "value": "e6ada0a4-0a1a-4445-9814-72ae39f20276",
+  "label": "Islington Gallery"
+},
+{
+  "value": "09cb9ba8-9153-4a74-aa5b-4121c9ee3518",
+  "label": "Berkshire Gallery"
+},
+{
+  "value": "517ceb96-8bae-4f77-87dd-40e049fc10c5",
+  "label": "Richmond Gallery"
+},
+{
+  "value": "14e46aa1-001d-43d2-ad4f-429cfaa7b514",
+  "label": "Central London "
+},
+{
+  "value": "84e8cc98-a429-4a17-a1c4-1482ccc78d28",
+  "label": "Lake District Gallery"
+},
+{
+  "value": "49ce3171-cf9c-4dae-bba9-a39121353a28",
+  "label": "Harrogate Gallery"
+},
+{
+  "value": "9d729207-8a3c-40f2-b61c-3b4052bf4fbd",
+  "label": "Bournemouth 2 Gallery"
+},
+{
+  "value": "8d5fd1c8-edce-44c4-a338-6b34c654463e",
+  "label": "Midlands Gallery"
+},
+{
+  "value": "569b03d8-cd20-4a91-843e-b3af52e9239e",
+  "label": "Twickenham Gallery"
+},
+{
+  "value": "42243bf3-a1d2-43af-a9ee-d00c750088ae",
+  "label": "Portsmouth Gallery"
+},
+{
+  "value": "7fe2c661-f0d9-40c4-a92e-d0e01d4161bc",
+  "label": "West London"
+},
+{
+  "value": "9072fc8c-37e3-44b6-8f1f-d7a16aa5858c",
+  "label": "Thames"
+},
+{
+  "value": "b258eeee-daa2-43cd-94fc-4acf850d3c84",
+  "label": "Walton On Thames"
+},
+{
+  "value": "7e69566e-e2c3-4bdd-9dae-893ce18778b0",
+  "label": "Cirencester"
+},
+{
+  "value": "4193c844-ad96-4373-9602-e7b95d1b7df6",
+  "label": "Bath"
+},
+{
+  "value": "1dfd5c28-314b-43f7-9383-85e826605b83",
+  "label": "Bournemouth"
+}
+            ]
+          },
+          {
+            "type": "radio",
+            "id": "width",
+            "label": "Width",
+            "options": [
+              {
+                "value": "page",
+                "label": "Page width"
+              },
+              {
+                "value": "full",
+                "label": "Full width"
+              }
+            ],
+            "default": "page"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Robin PRO Image Gallery",
+        "category": "Robin PRO Image Gallery App",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}
