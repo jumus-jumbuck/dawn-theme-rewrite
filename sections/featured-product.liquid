@@ -477,9 +477,11 @@
     endif
   -%}
 
-  <script type="application/ld+json">
-    {{ product | structured_data }}
-  </script>
+  {% if settings.use_default_jsonld %}
+    <script type="application/ld+json">
+      {{ product | structured_data }}
+    </script>
+  {% endif %}
 
   {% if product.media.size > 0 %}
     <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
