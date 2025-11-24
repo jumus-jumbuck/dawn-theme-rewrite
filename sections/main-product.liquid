@@ -718,11 +718,9 @@
       endif
     -%}
 
-    {% if settings.use_default_jsonld %}
-      <script type="application/ld+json">
-        {{ product | structured_data }}
-      </script>
-    {% endif %}
+    <script type="application/ld+json">
+      {{ product | structured_data }}
+    </script>
   </div>
 </product-info>
 
