@@ -289,11 +289,9 @@
   {%- endif -%}
 </article>
 
-{% if settings.use_default_jsonld %}
-  <script type="application/ld+json">
-    {{ article | structured_data }}
-  </script>
-{% endif %}
+<script type="application/ld+json">
+  {{ article | structured_data }}
+</script>
 
 {% schema %}
 {
