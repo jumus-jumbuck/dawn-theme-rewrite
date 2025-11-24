@@ -19,10 +19,6 @@
     {%- if template contains 'page.flatpack' -%}
   {% render 'structured-data-flatpack' %}
 {%- endif -%}
-{% if template contains 'article' %}
-  {% render 'structured-data-blog' %}
-{% endif %}
-
 {{ 'component-breadcrumb.css' | asset_url | stylesheet_tag }}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,6 +59,8 @@
     {%- endif -%}
 
     {{ content_for_header }}
+
+    {% render 'structured-data-global' %}
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'

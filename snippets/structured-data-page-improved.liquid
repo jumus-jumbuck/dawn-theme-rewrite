@@ -1,0 +1,24 @@
+{% if page %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{ shop.url }}{{ page.url }}",
+      "url": "{{ shop.url }}{{ page.url }}",
+      "name": {{ page.title | json }},
+      "description": {{ page.content | strip_html | truncate: 160 | json }},
+      "inLanguage": "{{ shop.locale }}",
+      "isPartOf": { "@id": "{{ shop.url }}/#/schema/website" },
+      "about": { "@id": "{{ shop.url }}/#/schema/organization" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ shop.url }}/#/schema/organization"
+    }
+  ]
+}
+</script>
+{% endif %}
+

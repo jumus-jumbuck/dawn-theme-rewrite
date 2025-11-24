@@ -1,0 +1,16 @@
+{% if collection %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "{{ shop.url }}{{ collection.url }}",
+  "name": {{ collection.title | json }},
+  "description": {{ collection.description | strip_html | truncate: 160 | json }},
+  "url": "{{ shop.url }}{{ collection.url }}",
+  "inLanguage": "{{ shop.locale }}",
+  "isPartOf": { "@id": "{{ shop.url }}/#/schema/website" },
+  "about": { "@id": "{{ shop.url }}/#/schema/organization" }
+}
+</script>
+{% endif %}
+

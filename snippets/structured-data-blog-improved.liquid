@@ -1,0 +1,63 @@
+{% if article %}
+{%- comment -%}
+  This snippet outputs two JSON-LD blocks:
+  1. BlogPosting: the main entity describing the article
+  2. WebPage: describing the page that hosts the article
+  Both reference your Organization and WebSite via their @id values.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "{{ shop.url }}{{ article.url }}",
+  "headline": {{ article.title | json }},
+  "description": {{ article.excerpt_or_content | strip_html | truncate: 160 | json }},
+  "url": "{{ shop.url }}{{ article.url }}",
+  {% if article.image %}
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ article.image | img_url: '1024x1024' | prepend: 'https:' | json }}
+  },
+  {% endif %}
+  "author": {
+    "@type": "Organization",
+    "@id": "{{ shop.url }}/#/schema/organization"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "{{ shop.url }}/#/schema/organization"
+  },
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S' }}+00:00",
+  {% if article.tags.size > 0 %}
+  "keywords": {{ article.tags | join: ', ' | json }},
+  {% endif %}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ article.url }}"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "{{ shop.url }}{{ article.url }}",
+  "url": "{{ shop.url }}{{ article.url }}",
+  "name": {{ article.title | json }},
+  "description": {{ article.excerpt_or_content | strip_html | truncate: 160 | json }},
+  {% if article.image %}
+  "primaryImageOfPage": {
+    "@id": {{ article.image | img_url: '1024x1024' | prepend: 'https:' | json }}
+  },
+  {% endif %}
+  "inLanguage": "{{ shop.locale }}",
+  "isPartOf": {
+    "@id": "{{ shop.url }}/#/schema/website"
+  },
+  "about": {
+    "@id": "{{ shop.url }}/#/schema/organization"
+  }
+}
+</script>
+{% endif %}
+

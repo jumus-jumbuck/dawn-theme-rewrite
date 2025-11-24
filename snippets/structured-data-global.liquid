@@ -1,0 +1,63 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ shop.url }}/#/schema/organization",
+      "name": {{ shop.name | json }},
+      {% comment %}
+        If you have an alternate name or trading name for your business you
+        can hard-code it below (for example "CKD"). Remove this line if you
+        don't need it.
+      {% endcomment %}
+      "alternateName": "Classic Kitchens Direct",
+      "url": "{{ shop.url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "{{ shop.url }}/#/schema/logo",
+        "url": {{ 'logo.png' | asset_url | prepend: 'https:' | json }},
+        "width": 600,
+        "height": 60
+      },
+      "image": [
+        { "@id": "{{ shop.url }}/#/schema/logo" }
+      ],
+      {% comment %}
+        Add links to all your social profiles here. Keeping them in a single
+        location helps search engines associate them with your brand. If you
+        don't have a particular profile, you can remove its entry.
+      {% endcomment %}
+      "sameAs": [
+        "https://www.instagram.com/paintedkitchenco/",
+        "https://www.youtube.com/channel/UCSTzh2hZ4a17dt1IBA9f4dA",
+        "https://uk.pinterest.com/PaintedKitchenCo/",
+        "https://www.facebook.com/paintedkitchenco/"
+      ],
+      {% comment %}
+        MerchantReturnPolicy gives Google more clarity around your returns
+        process. If you don't have a return policy page, remove this block.
+      {% endcomment %}
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "merchantReturnLink": "{{ shop.url }}/policies/refund-policy"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ shop.url }}/#/schema/website",
+      "url": "{{ shop.url }}",
+      "name": {{ shop.name | json }},
+      "alternateName": "Classic Kitchens Direct",
+      "publisher": { "@id": "{{ shop.url }}/#/schema/organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "inLanguage": "{{ shop.locale }}"
+    }
+  ]
+}
+</script>
+

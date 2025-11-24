@@ -1,0 +1,57 @@
+{% if product %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "{{ shop.url }}{{ product.url }}",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | json }},
+  "url": "{{ shop.url }}{{ product.url }}",
+  {% if product.variants.first.sku %}
+  "sku": {{ product.variants.first.sku | json }},
+  {% endif %}
+  {% comment %}
+    Many marketplaces and Google Merchant Center require a GTIN. If you have
+    one stored in a metafield, output it here. Remove this block if
+    unnecessary.
+  {% endcomment %}
+  {% if product.metafields.global.gtin %}
+  "gtin": {{ product.metafields.global.gtin | json }},
+  {% endif %}
+  "brand": {
+    "@type": "Brand",
+    "name": {{ shop.name | json }}
+  },
+  "image": [
+    {% for image in product.images %}
+      "{{ image.src | img_url: 'master' | prepend: 'https:' }}"{% if forloop.last == false %},{% endif %}
+    {% endfor %}
+  ],
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "{{ cart.currency.iso_code }}",
+    "price": "{{ product.price | money_without_currency }}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+    "url": "{{ shop.url }}{{ product.url }}"
+  },
+  {% comment %}
+    If your site collects product reviews, you can output aggregate rating
+    statistics. Replace the default values with your own metafields or
+    app variables. Remove this block if you don't collect reviews.
+  {% endcomment %}
+  {% if product.metafields.reviews.rating and product.metafields.reviews.count %}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ product.metafields.reviews.rating | json }},
+    "reviewCount": {{ product.metafields.reviews.count | json }}
+  },
+  {% endif %}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ product.url }}"
+  }
+}
+</script>
+{% endif %}
+
