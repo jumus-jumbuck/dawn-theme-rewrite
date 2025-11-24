@@ -1414,17 +1414,6 @@
     ]
   },
   {
-    "name": "Structured data",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "use_default_jsonld",
-        "default": false,
-        "label": "Output Dawn default Product and Article JSON-LD"
-      }
-    ]
-  },
-  {
     "name": "t:settings_schema.cart.name",
     "settings": [
       {
