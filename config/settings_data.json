@@ -229,11 +229,6 @@
     },
     "content_for_index": [],
     "blocks": {
-      "15154131639906026026": {
-        "type": "shopify://apps/seo-image-optimizer-speed/blocks/broken-link-embed/0605268f-f7c4-4e95-b560-e43df7d59ae4",
-        "disabled": false,
-        "settings": {}
-      },
       "13768625480086291342": {
         "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
         "disabled": false,
@@ -260,11 +255,6 @@
           "button_vertical_position": "lowest",
           "greeting_message": "👋 Hi, message us with any questions. We're happy to help!"
         }
-      },
-      "yoast-seo-metatags": {
-        "type": "shopify://apps/yoast-seo/blocks/metatags/7c777011-bc88-4743-a24e-64336e1e5b46",
-        "disabled": true,
-        "settings": {}
       }
     },
     "color_schemes": {
@@ -315,7 +305,7 @@
       "accent-2": {
         "settings": {
           "background": "#ffffff",
-          "background_gradient": "radial-gradient(rgba(247, 20, 20, 1), rgba(255, 204, 75, 1) 100%)",
+          "background_gradient": "radial-gradient(rgba(247, 20, 20, 1), rgba(247, 110, 42, 1) 2%, rgba(243, 15, 15, 1) 9%, rgba(247, 67, 31, 1) 10.072%, rgba(255, 204, 75, 1) 100%)",
           "text": "#ffffff",
           "button": "#ffffff",
           "button_label": "#000000",
